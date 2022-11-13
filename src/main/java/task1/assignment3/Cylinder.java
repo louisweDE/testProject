@@ -13,7 +13,6 @@ public class Cylinder implements Shape {
 
     @Override
     public double countVolume() {
-        double volume = Math.PI * Math.pow(this.radius, 2) * this.height;
-        return volume;
+        return Math.PI * Math.pow(this.radius, 2) * this.height;
     }
 }

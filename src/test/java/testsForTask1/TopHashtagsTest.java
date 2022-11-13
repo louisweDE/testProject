@@ -3,11 +3,11 @@ package testsForTask1;
 import org.junit.Test;
 import task1.assignment2.Hashtags;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TopHashtagsTest {
     @Test
@@ -33,15 +33,19 @@ public class TopHashtagsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testNullList() {
         List<String> nullList = null;
 
-        IllegalArgumentException ex =
-                assertThrows(IllegalArgumentException.class, () -> {
-                    Hashtags.findTopHashtags(nullList);
-                }, "Allowed null");
+        Hashtags.findTopHashtags(nullList);
+    }
 
-        assertEquals("The list is null!", ex.getMessage());
+    @Test(expected = NullPointerException.class)
+    public void testListWithNull() {
+        List<String> listWithNull = new ArrayList<>();
+        listWithNull.add("#hi cat how are #you #you are #good #so #hi #again");
+        listWithNull.add(null);
+
+        Hashtags.findTopHashtags(listWithNull);
     }
 }

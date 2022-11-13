@@ -15,6 +15,9 @@ public class Hashtags {
 
         Map<String, Integer> mapHashtags = new TreeMap<>();
         for (String el : strList) {
+            if(el == null)
+                throw new NullPointerException("String is null");
+
             List<String> uniqueWords = Arrays.stream(el.split("\\s+"))
                     .distinct()
                     .collect(Collectors.toList());

@@ -11,7 +11,6 @@ public class Cube implements Shape {
 
     @Override
     public double countVolume() {
-        double volume = Math.pow(this.side, 3);
-        return volume;
+        return Math.pow(this.side, 3);
     }
 }

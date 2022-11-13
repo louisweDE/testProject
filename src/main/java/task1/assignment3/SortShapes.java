@@ -8,6 +8,10 @@ public class SortShapes {
     public static Collection<Shape> sortShapesList(Collection<Shape> shapeList) {
         if (shapeList == null)
             throw new IllegalArgumentException("Shape List is null!");
+        for(Shape shape : shapeList){
+            if(shape == null)
+                throw new NullPointerException("Shape is null");
+        }
 
         return shapeList
                 .stream()

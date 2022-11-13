@@ -3,10 +3,10 @@ package testsForTask1;
 import org.junit.Test;
 import task1.assignment1.PositiveNumbers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SortPositivesTest {
     @Test
@@ -20,15 +20,19 @@ public class SortPositivesTest {
         assertEquals(expectedRes, res);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testNullArr() {
         List<Integer> nullArr = null;
 
-        IllegalArgumentException ex =
-                assertThrows(IllegalArgumentException.class, () -> {
-                    PositiveNumbers.sortPositiveNumbers(nullArr);
-                }, "Allowed null");
+        PositiveNumbers.sortPositiveNumbers(nullArr);
+    }
 
-        assertEquals("An Array is null!", ex.getMessage());
+    @Test(expected = NullPointerException.class)
+    public void testArrWithNull() {
+        List<Integer> listWithNull = new ArrayList<>();
+        listWithNull.add(-12);
+        listWithNull.add(null);
+
+        PositiveNumbers.sortPositiveNumbers(listWithNull);
     }
 }

@@ -11,7 +11,6 @@ public class Sphere implements Shape {
 
     @Override
     public double countVolume() {
-        double volume = 4 / 3 * Math.PI * Math.pow(this.radius, 3);
-        return volume;
+        return  4 / 3 * Math.PI * Math.pow(this.radius, 3);
     }
 }

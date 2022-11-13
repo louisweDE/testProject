@@ -7,11 +7,11 @@ import task1.assignment3.Shape;
 import task1.assignment3.SortShapes;
 import task1.assignment3.Sphere;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SortShapesTest {
     @Test
@@ -25,7 +25,7 @@ public class SortShapesTest {
         Shape cube3 = new Cube(8.9);
         Shape sphere3 = new Sphere(6);
 
-        List<Shape> shapesList = List.of(cube, sphere, cylinder,
+        Collection<Shape> shapesList = List.of(cube, sphere, cylinder,
                 cube2, sphere2, cylinder2, cube3, sphere3);
 
         Collection<Shape> resultShapes = SortShapes.sortShapesList(shapesList);
@@ -37,15 +37,20 @@ public class SortShapesTest {
 
     }
 
-    @Test
-    public void testSorNullShapeList() {
+    @Test(expected = IllegalArgumentException.class)
+    public void testSortNullShapeList() {
         Collection<Shape> nullShapeList = null;
 
-        IllegalArgumentException ex =
-                assertThrows(IllegalArgumentException.class, () -> {
-                    SortShapes.sortShapesList(nullShapeList);
-                }, "Allowed null");
+        SortShapes.sortShapesList(nullShapeList);
+    }
 
-        assertEquals("Shape List is null!", ex.getMessage());
+    @Test(expected = NullPointerException.class)
+    public void testShapesListWithNull() {
+        Shape cube = new Cube(7);
+        Collection<Shape> listShapesWithNull = new ArrayList<>();
+        listShapesWithNull.add(cube);
+        listShapesWithNull.add(null);
+
+        SortShapes.sortShapesList(listShapesWithNull);
     }
 }
