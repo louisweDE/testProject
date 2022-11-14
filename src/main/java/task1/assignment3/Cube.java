@@ -5,7 +5,7 @@ public class Cube implements Shape {
 
     public Cube(double side) {
         if (side <= 0)
-            throw new IllegalArgumentException("Negative side");
+            throw new IllegalArgumentException("Negative side!");
         this.side = side;
     }
 
