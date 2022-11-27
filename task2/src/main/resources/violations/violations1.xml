@@ -1,0 +1,30 @@
+<violations>
+    <violation
+        date_time="2020-05-05 15:39:03"
+        first_name="Ivan"
+        last_name="Ivanov"
+        type="SPEEDING"
+        fine_amount="340.00"
+    />
+    <violation
+            date_time="2021-06-05 14:12:03"
+            first_name="Mykola"
+            last_name="Mykolov"
+            type="RED_LIGHT"
+            fine_amount="210.00"
+    />
+    <violation
+            date_time="2019-01-09 05:55:11"
+            first_name="Irina"
+            last_name="Iriniva"
+            type="ALCOHOL"
+            fine_amount="5200.00"
+    />
+    <violation
+            date_time="2021-11-12 13:15:28"
+            first_name="Nadya"
+            last_name="Nadyaova"
+            type="RED_LIGHT"
+            fine_amount="290.00"
+    />
+</violations>

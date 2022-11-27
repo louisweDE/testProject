@@ -1,0 +1,37 @@
+<violations>
+    <violation
+            date_time="2021-01-09 05:55:11"
+            first_name="Stepan"
+            last_name="Stepanov"
+            type="ALCOHOL"
+            fine_amount="7200.00"
+    />
+    <violation
+            date_time="2018-05-05 15:39:03"
+            first_name="Jack"
+            last_name="Ivack"
+            type="SPEEDING"
+            fine_amount="540.00"
+    />
+    <violation
+            date_time="2020-06-05 14:12:03"
+            first_name="Kuzmin"
+            last_name="Kuzminov"
+            type="RED_LIGHT"
+            fine_amount="310.00"
+    />
+    <violation
+            date_time="2022-01-09 05:55:11"
+            first_name="Igor"
+            last_name="Igorevich"
+            type="ALCOHOL"
+            fine_amount="5500.00"
+    />
+    <violation
+            date_time="2022-05-05 15:39:03"
+            first_name="Anna"
+            last_name="Janovich"
+            type="SPEEDING"
+            fine_amount="690.00"
+    />
+</violations>

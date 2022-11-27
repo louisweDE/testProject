@@ -1,0 +1,37 @@
+<violations>
+    <violation
+            date_time="2016-10-07 15:39:03"
+            first_name="Vanya"
+            last_name="Ivanovich"
+            type="SPEEDING"
+            fine_amount="380.00"
+    />
+    <violation
+            date_time="2022-05-05 15:39:03"
+            first_name="Nika"
+            last_name="Nikovna"
+            type="SPEEDING"
+            fine_amount="730.00"
+    />
+    <violation
+            date_time="2017-01-09 05:55:11"
+            first_name="Sanya"
+            last_name="Sanyovich"
+            type="ALCOHOL"
+            fine_amount="2700.00"
+    />
+    <violation
+            date_time="2021-06-05 14:12:03"
+            first_name="Kiril"
+            last_name="Kirilov"
+            type="RED_LIGHT"
+            fine_amount="493.00"
+    />
+    <violation
+            date_time="2017-01-09 05:55:11"
+            first_name="Inna"
+            last_name="Innova"
+            type="ALCOHOL"
+            fine_amount="3478.00"
+    />
+</violations>
