@@ -1,6 +1,8 @@
 package assignment2;
 
 import assignment1.PersonsParser;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.xml.namespace.QName;
@@ -9,10 +11,7 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -33,11 +32,12 @@ public class Violations {
         Map<String, Double> statisticsMap = getSortedFinesFromXML(violations);
         violationsStatisticsToJson(statisticsMap);
     }
+
     public static Map<String, Double> getSortedFinesFromXML(List<File> violations) {
         Map<String, Double> fines = new HashMap<>();
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-        for(File violationsFile : violations) {
-            try(FileInputStream fi = new FileInputStream(violationsFile)) {
+        for (File violationsFile : violations) {
+            try (FileInputStream fi = new FileInputStream(violationsFile)) {
                 XMLEventReader reader = xmlInputFactory.createXMLEventReader(fi);
 
                 while (reader.hasNext()) {
@@ -59,7 +59,7 @@ public class Violations {
                         }
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -70,17 +70,34 @@ public class Violations {
                         Map.Entry::getValue,
                         (oldV, newV) -> oldV, LinkedHashMap::new));
     }
-    public static void violationsStatisticsToJson(Map<String, Double> violationsStatistics){
+
+    public static void violationsStatisticsToJson(Map<String, Double> violationsStatistics) {
         try {
             File resultFile = new File("violationsStatistics.json");
             resultFile.createNewFile();
             PrintWriter out = new PrintWriter(new FileWriter(resultFile));
 
-            ObjectMapper mapper = new ObjectMapper();
-            String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(violationsStatistics);
-            out.println(json);
+            JsonFactory factory = new JsonFactory();
+            StringWriter jsonObjectWriter = new StringWriter();
+            JsonGenerator generator = factory.createJsonGenerator(jsonObjectWriter);
+            generator.useDefaultPrettyPrinter(); // pretty print JSON
+            generator.writeStartObject();
+            generator.writeFieldName("violations_statistics");
+            generator.writeStartArray();
+            for (var entry : violationsStatistics.entrySet()) {
+                generator.writeStartObject();
+                generator.writeFieldName("type");
+                generator.writeString(entry.getKey());
+                generator.writeFieldName("fine_amount");
+                generator.writeNumber(entry.getValue());
+                generator.writeEndObject();
+            }
+            generator.writeEndArray();
+            generator.writeEndObject();
+            generator.close();
+            out.print(jsonObjectWriter);
             out.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
